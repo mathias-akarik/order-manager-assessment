@@ -88,7 +88,7 @@ export const CheckoutScreen: React.FC = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all placeholder:text-slate-300 font-medium"
+                className="w-full px-6 text-black py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all placeholder:text-slate-300 font-medium"
                 placeholder="Ex. Julian Gastronomy"
                 required
               />
@@ -102,7 +102,7 @@ export const CheckoutScreen: React.FC = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all placeholder:text-slate-300 font-medium"
+                className="w-full px-6 text-black py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all placeholder:text-slate-300 font-medium"
                 placeholder="Ex. (555) 000-0000"
                 required
               />
@@ -116,7 +116,7 @@ export const CheckoutScreen: React.FC = () => {
                 value={formData.address}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-6 py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all resize-none placeholder:text-slate-300 font-medium"
+                className="w-full text-black px-6 py-4 rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-orange-500 outline-none transition-all resize-none placeholder:text-slate-300 font-medium"
                 placeholder="Where should we bring your feast?"
                 required
               ></textarea>
