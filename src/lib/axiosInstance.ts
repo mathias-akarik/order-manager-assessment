@@ -1,8 +1,4 @@
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
-
-
-
-
+import axios, { AxiosInstance } from 'axios';
 
 // --- 1. CONFIGURATION ---
 const API_BASE_URL =
@@ -15,11 +11,11 @@ if (!API_BASE_URL) {
 
 // 2. CREATE THE AXIOS INSTANCE
 const api: AxiosInstance = axios.create({
-  baseURL: `${API_BASE_URL}`, 
+  baseURL: `${API_BASE_URL}`,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json', // Ensure the correct content type is set
   },
+  // No need for `withCredentials` since you're not using credentials (cookies, tokens)
 });
-
 
 export default api;
