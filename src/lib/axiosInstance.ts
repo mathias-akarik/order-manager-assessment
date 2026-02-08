@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-
+// new updates 
 // --- 1. CONFIGURATION ---
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_APP_BASE_URL ||
