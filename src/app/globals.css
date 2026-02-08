@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* --------------------
+   CSS Variables
+-------------------- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Tailwind theme bridge */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* --------------------
+   Base styles
+-------------------- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* --------------------
+   Utility classes
+-------------------- */
+.font-display {
+  font-family: var(--font-playfair), serif;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;  /* Ensure it participates in the stacking context */
+  z-index: 1;  /* Ensures it’s behind the recommendation bar */
+}
+
+
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --------------------
+   Animations
+-------------------- */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
