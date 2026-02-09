@@ -55,7 +55,7 @@ export const HomeScreen: React.FC = () => {
     <div className="min-h-screen pb-24">
       <Hero />
 
-      <div className="max-w-7xl bg-white mx-auto rounded-tl-3xl rounded-tr-3xl -mt-12 sm:-mt-20 relative z-10">
+      <div className="max-w-full px-4 md:px-0 md:max-w-7xl bg-white mx-auto rounded-tl-3xl rounded-tr-3xl -mt-12 sm:-mt-20 relative z-10">
         {recommendation && (
           <RecommendationBar
             recommendation={recommendation}
