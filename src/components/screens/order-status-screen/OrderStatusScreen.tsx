@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllOrders, fetchOrderStatus } from "@/services/orderService";
 import Button from "@/components/ui/Button";
@@ -9,26 +9,44 @@ import { Order } from "@/types/order";
 export const OrderStatusScreen: React.FC = () => {
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
-  // Fetch all orders using React Query
-  const { data: orders = [], isLoading: ordersLoading, error: ordersError } = useQuery<Order[], Error>({
+  const {
+    data: orders = [],
+    isLoading: ordersLoading,
+    error: ordersError,
+  } = useQuery<Order[], Error>({
     queryKey: ["orders"],
     queryFn: fetchAllOrders,
+    refetchInterval: 5000, // IMPORTANT: keep orders list fresh too
   });
 
-  // Fetch order status based on selected order
-  const { data: order, isLoading: statusLoading, refetch } = useQuery<Order | null, Error>({
-    queryKey: ["orderStatus", selectedOrderId],
-    queryFn: () => (selectedOrderId ? fetchOrderStatus(selectedOrderId) : Promise.resolve(null)),
-    enabled: !!selectedOrderId, // Only enable if selectedOrderId is available
-    refetchInterval: 10000, // Poll every 10 seconds
-  });
+  // Pick a default order (newest). If your backend returns newest last, this is fine.
+  const defaultOrderId = useMemo(() => {
+    if (orders.length === 0) return null;
+    return orders[orders.length - 1].id;
+  }, [orders]);
 
-  // Handle status updates
+  // ✅ Auto-select once orders are available
   useEffect(() => {
-    if (order) {
-      console.log("Current Order Status: ", order.status);
+    if (!selectedOrderId && defaultOrderId) {
+      setSelectedOrderId(defaultOrderId);
     }
-  }, [order]); // Always listen for order updates
+  }, [selectedOrderId, defaultOrderId]);
+
+  const {
+    data: order,
+    isLoading: statusLoading,
+    refetch,
+  } = useQuery<Order | null, Error>({
+    queryKey: ["orderStatus", selectedOrderId],
+    queryFn: () =>
+      selectedOrderId ? fetchOrderStatus(selectedOrderId) : Promise.resolve(null),
+    enabled: !!selectedOrderId,
+    refetchInterval: selectedOrderId ? 2000 : false, // 2s makes the simulation feel “live”
+  });
+
+  useEffect(() => {
+    if (order) console.log("Current Order Status: ", order.status);
+  }, [order]);
 
   // If loading orders, show loading state
   if (ordersLoading) {
