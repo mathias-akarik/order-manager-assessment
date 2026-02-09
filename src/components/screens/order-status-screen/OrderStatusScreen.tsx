@@ -52,9 +52,9 @@ export const OrderStatusScreen: React.FC = () => {
   if (ordersLoading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-32 text-center space-y-8">
-        <div className="w-16 h-16 bg-slate-100 rounded-full mx-auto animate-pulse"></div>
-        <div className="h-8 bg-slate-100 rounded-full w-48 mx-auto animate-pulse"></div>
-        <div className="h-64 bg-slate-50 rounded-[3rem] animate-pulse"></div>
+        <div className="w-16 h-16 bg-slate-200 rounded-full mx-auto animate-pulse"></div>
+        <div className="h-8 bg-slate-300 rounded-full w-48 mx-auto animate-pulse"></div>
+        <div className="h-64 bg-slate-200 rounded-[3rem] animate-pulse"></div>
       </div>
     );
   }
@@ -64,7 +64,7 @@ export const OrderStatusScreen: React.FC = () => {
     return (
       <div className="max-w-xl mx-auto px-4 py-40 text-center animate-in fade-in duration-700">
         <div className="mb-8 flex justify-center">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-slate-50 rounded-full flex items-center justify-center text-3x sm:text-4xl grayscale opacity-50">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-slate-100 rounded-full flex items-center justify-center text-3x sm:text-4xl grayscale opacity-50">
             📦
           </div>
         </div>
